@@ -1,0 +1,22 @@
+---
+
+- name: Set date and time in bash history
+  lineinfile:
+    path: /etc/bash.bashrc
+    state: present
+    regexp: '^HISTTIMEFORMAT'
+    line: 'HISTTIMEFORMAT="[%Y-%m-%d %T] "'
+
+- name: Set history log length to infinity
+  lineinfile:
+    path: /etc/bash.bashrc
+    state: present
+    regexp: '^HISTSIZE='
+    line: 'HISTSIZE='
+
+- name: Set maximum history log size to infinity
+  lineinfile:
+    path: /etc/bash.bashrc
+    state: present
+    regexp: '^HISTFILESIZE='
+    line: 'HISTFILESIZE='
