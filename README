@@ -1,2 +1,0 @@
-apt install -y ansible
-ansible-playbook main.yml
