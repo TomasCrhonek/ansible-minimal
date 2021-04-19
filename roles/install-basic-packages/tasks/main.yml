@@ -1,0 +1,11 @@
+---
+
+- name: Install mc
+  apt:
+    name: mc
+    state: latest
+
+- name: Install man
+  apt:
+    name: man
+    state: latest

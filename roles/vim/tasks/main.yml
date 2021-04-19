@@ -1,0 +1,12 @@
+---
+
+- name: Install ViM
+  apt:
+    name: vim
+    state: latest
+
+- name: Configure ViM
+  lineinfile:
+    path: /etc/vim/vimrc
+    regexp: '^set bg='
+    line: 'set bg=dark'

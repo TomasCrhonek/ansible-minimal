@@ -1,0 +1,25 @@
+---
+
+- name: Create printIP.service unit file
+  template:
+    src: printIP.service
+    dest: /etc/systemd/system/printIP.service
+    
+- name: Reload systemd
+  systemd:
+    daemon-reload: yes
+
+- name: Enable printIP.service
+  systemd:
+    name: printIP.service
+    enabled: yes
+
+- name: Disable tty1
+  systemd:
+    name: getty@tty1.service
+    enabled: no
+    masked: yes
+
+# - name: Reboot
+#   debug:
+#     msg: Now reboot the system.

@@ -1,0 +1,21 @@
+---
+
+- name: Configure SSH Daemon
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin yes'
+    validate: /usr/sbin/sshd -t -f %s
+
+- name: Disable ssh.service
+  systemd:
+    name: ssh.service
+    state: stopped
+    enabled: no
+
+- name: Enable ssh.socket
+  systemd:
+    name: ssh.socket
+    state: started
+    enabled: yes
+    

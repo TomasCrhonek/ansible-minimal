@@ -20,3 +20,8 @@
     state: present
     regexp: '^HISTFILESIZE='
     line: 'HISTFILESIZE='
+
+- name: Install bash-completion
+  apt:
+    name: bash-completion
+    state: latest
