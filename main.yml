@@ -6,6 +6,7 @@
   roles:
     - grub
     - systemd-networkd
+    - apt
     - bash
     - sshd
     - remove-unwanted-packages

@@ -1,0 +1,10 @@
+---
+
+- name: Disable recommended / suggested package installation
+  template:
+    src: 99notinstallrs
+    dest: /etc/apt/apt.conf.d/99notinstallrs
+
+- name: Update repository information
+  apt:
+    update_cache: yes
