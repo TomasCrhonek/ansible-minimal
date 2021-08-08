@@ -1,11 +1,17 @@
 ---
 
+- name: Check if grub exist
+  stat:
+    path: /etc/default/grub
+  register: grubfile
+
 - name: Remove GRUBs timeout
   lineinfile:
     path: /etc/default/grub
     regexp: '^GRUB_TIMEOUT='
     line: 'GRUB_TIMEOUT=0'
   notify: update-grub
+  when: grubfile.stat.exists
 
 - name: Remove quiet from kernel parameters
   lineinfile:
@@ -13,6 +19,7 @@
     regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
     line: 'GRUB_CMDLINE_LINUX_DEFAULT=""'
   notify: update-grub
+  when: grubfile.stat.exists
 
 - name: Call handlers
   meta: flush_handlers
