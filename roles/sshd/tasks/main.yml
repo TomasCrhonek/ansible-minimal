@@ -1,11 +1,41 @@
 ---
 
-- name: Configure SSH Daemon
+- name: Install SSH
+  apt: 
+    pkg:
+      - openssh-server
+      - openssh-client
+      - rsync
+    state: latest
+
+- name: Disable client Roaming function
+  lineinfile:
+    path: /etc/ssh/ssh_config
+    regexp: '^UseRoaming'
+    line: 'UseRoaming no'
+    state: present
+
+- name: Enable root access
   lineinfile:
     path: /etc/ssh/sshd_config
     regexp: '^PermitRootLogin'
     line: 'PermitRootLogin yes'
     validate: /usr/sbin/sshd -t -f %s
+
+- name: UseDNS no
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^UseDNS'
+    line: 'UseDNS no'
+    state: 'present'
+
+- name: Disable password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+    state: present
+  when: sshkeysonly is not defined or sshkeysonly | bool
 
 - name: Disable ssh.service
   systemd:
