@@ -3,7 +3,7 @@
 Prerequisites:
 
 - Debian 10 minimal installation
-- with ssh server
+- with ssh server (you may want to disable password authentication)
 
 After minimal installation Debian 10 just run this playbook.
 
