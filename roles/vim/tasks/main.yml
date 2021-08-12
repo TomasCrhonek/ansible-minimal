@@ -10,3 +10,6 @@
     path: /etc/vim/vimrc
     regexp: '^set bg='
     line: 'set bg=dark'
+
+- name: Set ViM as default system wide editor
+  shell: update-alternatives --set editor /usr/bin/vim.basic
