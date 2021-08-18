@@ -5,7 +5,7 @@ Prerequisites:
 - Debian 10 minimal installation
 - with ssh server (you may want to enable password authentication)
 
-After minimal installation Debian 10 just run this playbook.
+After minimal installation Debian 10 (tested also on Debian 11) just run this playbook.
 
 ```bash
 apt install -y ansible
