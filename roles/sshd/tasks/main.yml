@@ -29,6 +29,16 @@
     line: 'UseDNS no'
     state: 'present'
 
+- name: Set up multiple authorized keys
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    exclusive: no
+    key: '{{ item }}'
+  with_file:
+    - mykey.pub
+    - manager.pub
+
 - name: Disable password authentication
   lineinfile:
     path: /etc/ssh/sshd_config
